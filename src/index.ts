@@ -30,7 +30,7 @@ const PORT = process.env.PORT || 5000;
 app.use(helmet());
 app.use(cors({
     origin: process.env.NODE_ENV === 'production'
-        ? ['mern-booking-app-eabzagh0g2cvenar.canadacentral-01.azurewebsites.net']
+        ? ['http://mern-booking-app-eabzagh0g2cvenar.canadacentral-01.azurewebsites.net']
         : ['http://localhost:3000'],
     credentials: true
 }));
