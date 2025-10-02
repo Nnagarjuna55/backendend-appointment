@@ -20,14 +20,20 @@ const app = express();
 const PORT = process.env.PORT || 5000;
 
 // Security middleware
+// app.use(helmet());
+// app.use(cors({
+//     origin: process.env.NODE_ENV === 'production'
+//         ? ['https://your-frontend-domain.com']
+//         : ['http://localhost:3000'],
+//     credentials: true
+// }));
 app.use(helmet());
 app.use(cors({
     origin: process.env.NODE_ENV === 'production'
-        ? ['https://your-frontend-domain.com']
+        ? ['mern-booking-app-eabzagh0g2cvenar.canadacentral-01.azurewebsites.net']
         : ['http://localhost:3000'],
     credentials: true
 }));
-
 // Rate limiting
 const limiter = rateLimit({
     windowMs: 15 * 60 * 1000, // 15 minutes
