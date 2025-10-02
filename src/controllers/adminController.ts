@@ -341,7 +341,18 @@ export const manualClearExpiredAppointments = async (req: AuthRequest, res: Resp
 
 export const getMuseumConfigs = async (req: AuthRequest, res: Response) => {
     try {
+        console.log('=== GET MUSEUM CONFIGS ===');
+
         const configs = await MuseumConfig.find();
+        console.log('Found museum configs:', configs.length);
+
+        if (configs.length === 0) {
+            console.log('No museum configs found, returning empty array');
+        } else {
+            configs.forEach((config, i) => {
+                console.log(`${i + 1}. ${config.name} (${config.museum})`);
+            });
+        }
 
         res.json({
             success: true,
@@ -349,9 +360,16 @@ export const getMuseumConfigs = async (req: AuthRequest, res: Response) => {
         });
     } catch (error) {
         console.error('Get museum configs error:', error);
+        console.error('Error details:', {
+            name: error instanceof Error ? error.name : 'Unknown',
+            message: error instanceof Error ? error.message : 'Unknown error',
+            stack: error instanceof Error ? error.stack : 'No stack trace'
+        });
+
         res.status(500).json({
             success: false,
-            message: 'Internal server error'
+            message: 'Internal server error',
+            error: error instanceof Error ? error.message : 'Unknown error'
         });
     }
 };

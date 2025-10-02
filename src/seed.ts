@@ -18,10 +18,10 @@ export const seedDatabase = async () => {
             console.log('Admin user created');
         }
 
-        // Create museum configurations
-        const mainMuseumExists = await MuseumConfig.findOne({ museum: 'main' });
-        if (!mainMuseumExists) {
-            const mainMuseum = new MuseumConfig({
+        // Create museum configurations using upsert to avoid duplicates
+        await MuseumConfig.findOneAndUpdate(
+            { museum: 'main' },
+            {
                 museum: 'main',
                 name: 'Shaanxi History Museum',
                 address: 'Xiaozhai East Road, Yanta District Number 91',
@@ -37,14 +37,14 @@ export const seedDatabase = async () => {
                 bookingAdvanceDays: 5, // 5 days advance booking
                 ticketReleaseTime: '17:00', // Daily ticket release at 17:00
                 isActive: true
-            });
-            await mainMuseum.save();
-            console.log('Main museum configuration created');
-        }
+            },
+            { upsert: true, new: true }
+        );
+        console.log('Main museum configuration created/updated');
 
-        const qinHanMuseumExists = await MuseumConfig.findOne({ museum: 'qin_han' });
-        if (!qinHanMuseumExists) {
-            const qinHanMuseum = new MuseumConfig({
+        await MuseumConfig.findOneAndUpdate(
+            { museum: 'qin_han' },
+            {
                 museum: 'qin_han',
                 name: 'Qin & Han Dynasties Museum',
                 address: 'East Section of Lanchi 3rd Road, Qin & Han New City, Xi\'an-Xian New Area',
@@ -60,10 +60,10 @@ export const seedDatabase = async () => {
                 bookingAdvanceDays: 5, // 5 days advance booking
                 ticketReleaseTime: '17:30', // Daily ticket release at 17:30
                 isActive: true
-            });
-            await qinHanMuseum.save();
-            console.log('Qin & Han museum configuration created');
-        }
+            },
+            { upsert: true, new: true }
+        );
+        console.log('Qin & Han museum configuration created/updated');
 
         console.log('Database seeded successfully');
     } catch (error) {
