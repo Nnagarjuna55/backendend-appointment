@@ -28,10 +28,26 @@ const PORT = process.env.PORT || 5000;
 //     credentials: true
 // }));
 app.use(helmet());
+// CORS configuration - allow both development and production origins
+const allowedOrigins = [
+    'http://localhost:3000',
+    'http://localhost:3001',
+    'https://mern-booking-app-eabzagh0g2cvenar.canadacentral-01.azurewebsites.net',
+    'http://mern-booking-app-eabzagh0g2cvenar.canadacentral-01.azurewebsites.net'
+];
+
 app.use(cors({
-    origin: process.env.NODE_ENV === 'production'
-        ? ['https://mern-booking-app-eabzagh0g2cvenar.canadacentral-01.azurewebsites.net']
-        : ['http://localhost:3000'],
+    origin: function (origin, callback) {
+        // Allow requests with no origin (like mobile apps or curl requests)
+        if (!origin) return callback(null, true);
+
+        if (allowedOrigins.indexOf(origin) !== -1) {
+            callback(null, true);
+        } else {
+            console.log('CORS blocked origin:', origin);
+            callback(new Error('Not allowed by CORS'));
+        }
+    },
     credentials: true
 }));
 // Rate limiting
