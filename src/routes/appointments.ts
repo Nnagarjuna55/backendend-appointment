@@ -7,7 +7,8 @@ import {
     updateAppointment,
     cancelAppointment,
     getAvailableTimeSlots,
-    getMuseumConfigs
+    getMuseumConfigs,
+    checkMuseumAvailability
 } from '../controllers/appointmentController';
 import { authenticate, requireAdmin } from '../middleware/auth';
 
@@ -31,6 +32,7 @@ const appointmentValidation = [
 // Routes
 router.get('/configs', getMuseumConfigs);
 router.get('/time-slots', getAvailableTimeSlots);
+router.get('/check-availability', checkMuseumAvailability);
 router.post('/', authenticate, requireAdmin, appointmentValidation, createAppointment);
 router.get('/', authenticate, requireAdmin, getAppointments);
 router.get('/:id', authenticate, requireAdmin, getAppointmentById);

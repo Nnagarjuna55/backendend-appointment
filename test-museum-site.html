@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Test Museum Booking Site</title>
+</head>
+
+<body>
+    <h1>Museum Booking Test Site</h1>
+
+    <form id="booking-form">
+        <input type="text" id="visitor-name" placeholder="Visitor Name">
+        <input type="text" id="id-number" placeholder="ID Number">
+        <select id="id-type">
+            <option value="id_card">ID Card</option>
+            <option value="passport">Passport</option>
+        </select>
+        <select id="museum">
+            <option value="main">Main Museum</option>
+            <option value="qin_han">Qin & Han Museum</option>
+        </select>
+        <input type="date" id="visit-date">
+        <select id="time-slot">
+            <option value="8:30-10:30">8:30-10:30</option>
+            <option value="10:30-12:30">10:30-12:30</option>
+        </select>
+        <button type="button" id="submit-booking">Submit Booking</button>
+    </form>
+
+    <div id="booking-result" style="display: none;">
+        <div class="booking-success">
+            <h2>Booking Successful!</h2>
+            <p class="booking-reference">REF123456</p>
+        </div>
+    </div>
+
+    <div id="availability-check" style="display: none;">
+        <div class="availability-result">Slot available</div>
+    </div>
+
+    <script>
+        document.getElementById('submit-booking').addEventListener('click', function () {
+            document.getElementById('booking-result').style.display = 'block';
+        });
+
+        // Simulate availability check
+        if (window.location.search.includes('check=true')) {
+            document.getElementById('availability-check').style.display = 'block';
+        }
+    </script>
+</body>
+
+</html>
