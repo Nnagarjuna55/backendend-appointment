@@ -1,0 +1,128 @@
+[
+  {
+    "id": "MANUAL-1759519428128",
+    "timestamp": "2025-10-03T19:23:48.128Z",
+    "status": "pending_manual_booking",
+    "data": {
+      "visitorName": "王佳佳",
+      "idNumber": "150102199005235629",
+      "idType": "id_card",
+      "museum": "main",
+      "visitDate": "2025-10-09",
+      "timeSlot": "16:30-18:00",
+      "visitorDetails": [
+        {
+          "name": "王佳佳",
+          "idNumber": "150102199005235629",
+          "idType": "id_card"
+        }
+      ]
+    },
+    "instructions": "MANUAL BOOKING INSTRUCTIONS\n============================\n\nMuseum: Shaanxi History Museum (Xiaozhai East Road, Yanta District Number 91)\nDate: 2025-10-09\nTime Slot: 16:30-18:00\n\nVisitor Information:\n- Name: 王佳佳\n- ID Number: 150102199005235629\n- ID Type: id_card\n\nAdditional Visitors:\n\n1. Name: 王佳佳\n   ID: 150102199005235629\n   Type: id_card\n   Age: Not specified\n\n\nSTEPS TO COMPLETE BOOKING:\n1. Go to museum's official WeChat account\n2. Navigate to ticket reservation system\n3. Select visit date: 2025-10-09\n4. Select time slot: 16:30-18:00\n5. Add visitor information as listed above\n6. Complete the booking process\n7. Note the booking reference number\n8. Update this record with the official booking reference\n\nBOOKING REFERENCE: MANUAL-1759519428128\nSTATUS: Pending manual completion"
+  },
+  {
+    "id": "MANUAL-1759519529713",
+    "timestamp": "2025-10-03T19:25:29.713Z",
+    "status": "pending_manual_booking",
+    "data": {
+      "visitorName": "王刘强",
+      "idNumber": "150304198410270515",
+      "idType": "id_card",
+      "museum": "main",
+      "visitDate": "2025-10-09",
+      "timeSlot": "12:30-14:30",
+      "visitorDetails": [
+        {
+          "name": "王刘强",
+          "idNumber": "150304198410270515",
+          "idType": "id_card"
+        }
+      ]
+    },
+    "instructions": "MANUAL BOOKING INSTRUCTIONS\n============================\n\nMuseum: Shaanxi History Museum (Xiaozhai East Road, Yanta District Number 91)\nDate: 2025-10-09\nTime Slot: 12:30-14:30\n\nVisitor Information:\n- Name: 王刘强\n- ID Number: 150304198410270515\n- ID Type: id_card\n\nAdditional Visitors:\n\n1. Name: 王刘强\n   ID: 150304198410270515\n   Type: id_card\n   Age: Not specified\n\n\nSTEPS TO COMPLETE BOOKING:\n1. Go to museum's official WeChat account\n2. Navigate to ticket reservation system\n3. Select visit date: 2025-10-09\n4. Select time slot: 12:30-14:30\n5. Add visitor information as listed above\n6. Complete the booking process\n7. Note the booking reference number\n8. Update this record with the official booking reference\n\nBOOKING REFERENCE: MANUAL-1759519529713\nSTATUS: Pending manual completion"
+  },
+  {
+    "id": "MANUAL-1759519575905",
+    "timestamp": "2025-10-03T19:26:15.905Z",
+    "status": "pending_manual_booking",
+    "data": {
+      "visitorName": "张丹军",
+      "idNumber": "150104198212083013",
+      "idType": "id_card",
+      "museum": "main",
+      "visitDate": "2025-10-09",
+      "timeSlot": "12:30-14:30",
+      "visitorDetails": [
+        {
+          "name": "张丹军",
+          "idNumber": "150104198212083013",
+          "idType": "id_card"
+        }
+      ]
+    },
+    "instructions": "MANUAL BOOKING INSTRUCTIONS\n============================\n\nMuseum: Shaanxi History Museum (Xiaozhai East Road, Yanta District Number 91)\nDate: 2025-10-09\nTime Slot: 12:30-14:30\n\nVisitor Information:\n- Name: 张丹军\n- ID Number: 150104198212083013\n- ID Type: id_card\n\nAdditional Visitors:\n\n1. Name: 张丹军\n   ID: 150104198212083013\n   Type: id_card\n   Age: Not specified\n\n\nSTEPS TO COMPLETE BOOKING:\n1. Go to museum's official WeChat account\n2. Navigate to ticket reservation system\n3. Select visit date: 2025-10-09\n4. Select time slot: 12:30-14:30\n5. Add visitor information as listed above\n6. Complete the booking process\n7. Note the booking reference number\n8. Update this record with the official booking reference\n\nBOOKING REFERENCE: MANUAL-1759519575905\nSTATUS: Pending manual completion"
+  },
+  {
+    "id": "MANUAL-1759521370611",
+    "timestamp": "2025-10-03T19:56:10.611Z",
+    "status": "pending_manual_booking",
+    "data": {
+      "visitorName": "伍鸿睿",
+      "idNumber": "510703200606130015",
+      "idType": "id_card",
+      "museum": "main",
+      "visitDate": "2025-10-09",
+      "timeSlot": "16:30-18:00",
+      "visitorDetails": [
+        {
+          "name": "伍鸿睿",
+          "idNumber": "510703200606130015",
+          "idType": "id_card"
+        }
+      ]
+    },
+    "instructions": "MANUAL BOOKING INSTRUCTIONS\n============================\n\nMuseum: Shaanxi History Museum (Xiaozhai East Road, Yanta District Number 91)\nDate: 2025-10-09\nTime Slot: 16:30-18:00\n\nVisitor Information:\n- Name: 伍鸿睿\n- ID Number: 510703200606130015\n- ID Type: id_card\n\nAdditional Visitors:\n\n1. Name: 伍鸿睿\n   ID: 510703200606130015\n   Type: id_card\n   Age: Not specified\n\n\nSTEPS TO COMPLETE BOOKING:\n1. Go to museum's official WeChat account\n2. Navigate to ticket reservation system\n3. Select visit date: 2025-10-09\n4. Select time slot: 16:30-18:00\n5. Add visitor information as listed above\n6. Complete the booking process\n7. Note the booking reference number\n8. Update this record with the official booking reference\n\nBOOKING REFERENCE: MANUAL-1759521370611\nSTATUS: Pending manual completion"
+  },
+  {
+    "id": "MANUAL-1759521587225",
+    "timestamp": "2025-10-03T19:59:47.225Z",
+    "status": "pending_manual_booking",
+    "data": {
+      "visitorName": "王靖怡",
+      "idNumber": "440106200306064421",
+      "idType": "id_card",
+      "museum": "main",
+      "visitDate": "2025-10-09",
+      "timeSlot": "16:30-18:00",
+      "visitorDetails": [
+        {
+          "name": "王靖怡",
+          "idNumber": "440106200306064421",
+          "idType": "id_card"
+        }
+      ]
+    },
+    "instructions": "MANUAL BOOKING INSTRUCTIONS\n============================\n\nMuseum: Shaanxi History Museum (Xiaozhai East Road, Yanta District Number 91)\nDate: 2025-10-09\nTime Slot: 16:30-18:00\n\nVisitor Information:\n- Name: 王靖怡\n- ID Number: 440106200306064421\n- ID Type: id_card\n\nAdditional Visitors:\n\n1. Name: 王靖怡\n   ID: 440106200306064421\n   Type: id_card\n   Age: Not specified\n\n\nSTEPS TO COMPLETE BOOKING:\n1. Go to museum's official WeChat account\n2. Navigate to ticket reservation system\n3. Select visit date: 2025-10-09\n4. Select time slot: 16:30-18:00\n5. Add visitor information as listed above\n6. Complete the booking process\n7. Note the booking reference number\n8. Update this record with the official booking reference\n\nBOOKING REFERENCE: MANUAL-1759521587225\nSTATUS: Pending manual completion"
+  },
+  {
+    "id": "MANUAL-1759548247866",
+    "timestamp": "2025-10-04T03:24:07.866Z",
+    "status": "pending_manual_booking",
+    "data": {
+      "visitorName": "杨广坤",
+      "idNumber": "320112197810091619",
+      "idType": "id_card",
+      "museum": "main",
+      "visitDate": "2025-10-09",
+      "timeSlot": "16:30-18:00",
+      "visitorDetails": [
+        {
+          "name": "杨广坤",
+          "idNumber": "320112197810091619",
+          "idType": "id_card"
+        }
+      ]
+    },
+    "instructions": "MANUAL BOOKING INSTRUCTIONS\n============================\n\nMuseum: Shaanxi History Museum (Xiaozhai East Road, Yanta District Number 91)\nDate: 2025-10-09\nTime Slot: 16:30-18:00\n\nVisitor Information:\n- Name: 杨广坤\n- ID Number: 320112197810091619\n- ID Type: id_card\n\nAdditional Visitors:\n\n1. Name: 杨广坤\n   ID: 320112197810091619\n   Type: id_card\n   Age: Not specified\n\n\nSTEPS TO COMPLETE BOOKING:\n1. Go to museum's official WeChat account\n2. Navigate to ticket reservation system\n3. Select visit date: 2025-10-09\n4. Select time slot: 16:30-18:00\n5. Add visitor information as listed above\n6. Complete the booking process\n7. Note the booking reference number\n8. Update this record with the official booking reference\n\nBOOKING REFERENCE: MANUAL-1759548247866\nSTATUS: Pending manual completion"
+  }
+]
