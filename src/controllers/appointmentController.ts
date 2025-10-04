@@ -42,6 +42,20 @@ export const createAppointment = async (req: AuthRequest, res: Response) => {
             });
         }
 
+        // Fast duplicate check using lean() for speed
+        const existingBooking = await Appointment.findOne({
+            idNumber: appointmentData.idNumber,
+            visitDate: appointmentData.visitDate,
+            status: { $in: ['confirmed', 'pending'] }
+        }).lean();
+
+        if (existingBooking) {
+            return res.status(400).json({
+                success: false,
+                message: `Duplicate booking detected. ID number ${appointmentData.idNumber} already has a booking for ${appointmentData.visitDate.toDateString()}. Each ID can only book once per day.`
+            });
+        }
+
         // Get museum configuration
         const museumConfig = await MuseumConfig.findOne({ museum: appointmentData.museum });
         if (!museumConfig) {
@@ -639,6 +653,29 @@ export const getMuseumConfigs = async (req: Request, res: Response) => {
         });
     } catch (error) {
         console.error('Get museum configs error:', error);
+        res.status(500).json({
+            success: false,
+            message: 'Internal server error'
+        });
+    }
+};
+
+// Check museum timing status
+export const checkMuseumTimingStatus = async (req: Request, res: Response) => {
+    try {
+        console.log('=== CHECKING MUSEUM TIMING STATUS ===');
+
+        const timingStatus = museumAutomation.checkMuseumTimingStatus();
+
+        console.log('🕐 Museum timing status:', timingStatus);
+
+        res.json({
+            success: true,
+            data: timingStatus,
+            message: 'Museum timing status retrieved successfully'
+        });
+    } catch (error) {
+        console.error('Check museum timing status error:', error);
         res.status(500).json({
             success: false,
             message: 'Internal server error'

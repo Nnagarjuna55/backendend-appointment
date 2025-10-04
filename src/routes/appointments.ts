@@ -10,7 +10,8 @@ import {
     getMuseumConfigs,
     checkMuseumAvailability,
     getManualBookings,
-    updateManualBooking
+    updateManualBooking,
+    checkMuseumTimingStatus
 } from '../controllers/appointmentController';
 import { authenticate, requireAdmin } from '../middleware/auth';
 
@@ -35,6 +36,7 @@ const appointmentValidation = [
 router.get('/configs', getMuseumConfigs);
 router.get('/time-slots', getAvailableTimeSlots);
 router.get('/check-availability', checkMuseumAvailability);
+router.get('/timing-status', checkMuseumTimingStatus);
 router.get('/manual-bookings', authenticate, requireAdmin, getManualBookings);
 router.put('/manual-bookings/:bookingId', authenticate, requireAdmin, updateManualBooking);
 router.post('/', authenticate, requireAdmin, appointmentValidation, createAppointment);

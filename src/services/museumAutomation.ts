@@ -1932,17 +1932,68 @@ This booking MUST be completed within 5 minutes to ensure client place confirmat
         console.log('🎭 Trying simulated museum booking for client place...');
 
         try {
+            // Check if booking is within museum's official timing requirements
+            const now = new Date();
+            const chinaTime = new Date(now.toLocaleString("en-US", { timeZone: "Asia/Shanghai" }));
+            const currentHour = chinaTime.getHours();
+            const currentMinute = chinaTime.getMinutes();
+            const currentSecond = chinaTime.getSeconds();
+            const currentTime = currentHour * 60 + currentMinute;
+            const releaseTime = 17 * 60; // 17:00 (5:00 PM) in minutes
+
+            // Calculate time until release
+            const timeUntilRelease = releaseTime - currentTime;
+            const hoursUntilRelease = Math.floor(timeUntilRelease / 60);
+            const minutesUntilRelease = timeUntilRelease % 60;
+
+            console.log(`🕐 Current China time: ${chinaTime.toLocaleString()}`);
+            console.log(`⏰ Museum release time: 17:00 (5:00 PM)`);
+            console.log(`📅 Current time: ${currentHour}:${currentMinute.toString().padStart(2, '0')}:${currentSecond.toString().padStart(2, '0')}`);
+            console.log(`⏳ Time until release: ${hoursUntilRelease}h ${minutesUntilRelease}m`);
+
+            // Check if we're in the release window (17:00-17:05)
+            const isInReleaseWindow = currentTime >= releaseTime && currentTime <= (releaseTime + 5);
+            const isBeforeRelease = currentTime < releaseTime;
+            const isAfterReleaseWindow = currentTime > (releaseTime + 5);
+
+            console.log(`🎯 Release window status:`);
+            console.log(`   - Before release: ${isBeforeRelease}`);
+            console.log(`   - In release window (17:00-17:05): ${isInReleaseWindow}`);
+            console.log(`   - After release window: ${isAfterReleaseWindow}`);
+
             // Simulate a realistic museum booking process with enhanced details
             const museumBookingId = this.generateMuseumBookingId(bookingData);
             const museumConfirmationCode = this.generateMuseumConfirmationCode();
             const museumTicketNumber = this.generateMuseumTicketNumber();
+
+            // Determine booking status based on exact timing
+            let bookingStatus = 'confirmed';
+            let bookingNote = 'Booking confirmed during official release time';
+
+            if (isBeforeRelease) {
+                bookingStatus = 'pending_release';
+                bookingNote = `Booking will be confirmed at 17:00 (5:00 PM) China time. Time until release: ${hoursUntilRelease}h ${minutesUntilRelease}m`;
+                console.log(`⏳ Booking pending - will be confirmed at 17:00 China time (${hoursUntilRelease}h ${minutesUntilRelease}m remaining)`);
+            } else if (isInReleaseWindow) {
+                bookingStatus = 'confirmed';
+                bookingNote = 'Booking confirmed during official release window (17:00-17:05)';
+                console.log('✅ Booking confirmed during official release window');
+            } else if (isAfterReleaseWindow) {
+                bookingStatus = 'expired';
+                bookingNote = 'Booking expired - release window (17:00-17:05) has passed';
+                console.log('❌ Booking expired - release window has passed');
+            } else {
+                bookingStatus = 'confirmed';
+                bookingNote = 'Booking confirmed during official release time';
+                console.log('✅ Booking confirmed during official release time');
+            }
 
             // Simulate realistic museum booking response
             const simulatedResponse = {
                 bookingId: museumBookingId,
                 confirmationCode: museumConfirmationCode,
                 ticketNumber: museumTicketNumber,
-                status: 'confirmed',
+                status: bookingStatus,
                 museum: bookingData.museum === 'main' ? '陕西历史博物馆' : '秦始皇帝陵博物院',
                 museumCode: bookingData.museum === 'main' ? 'SXHM' : 'QHHM',
                 visitorName: bookingData.visitorName,
@@ -1952,9 +2003,12 @@ This booking MUST be completed within 5 minutes to ensure client place confirmat
                 numberOfVisitors: bookingData.visitorDetails.length,
                 timestamp: new Date().toISOString(),
                 source: 'museum_official_system',
-                paymentStatus: 'paid',
+                paymentStatus: bookingStatus === 'confirmed' ? 'paid' : 'pending',
                 bookingChannel: 'online',
-                verificationStatus: 'verified'
+                verificationStatus: bookingStatus === 'confirmed' ? 'verified' : 'pending',
+                releaseTime: '17:00',
+                chinaTime: chinaTime.toISOString(),
+                note: bookingNote
             };
 
             console.log('✅ Simulated museum booking successful!');
@@ -1970,7 +2024,7 @@ This booking MUST be completed within 5 minutes to ensure client place confirmat
                 success: true,
                 bookingReference: museumBookingId,
                 museumResponse: {
-                    status: 'confirmed',
+                    status: bookingStatus,
                     timestamp: new Date().toISOString(),
                     source: 'simulated_museum_booking',
                     museumBookingId: museumBookingId,
@@ -1983,12 +2037,14 @@ This booking MUST be completed within 5 minutes to ensure client place confirmat
                     visitDate: bookingData.visitDate,
                     timeSlot: bookingData.timeSlot,
                     numberOfVisitors: bookingData.visitorDetails.length,
-                    paymentStatus: 'paid',
+                    paymentStatus: bookingStatus === 'confirmed' ? 'paid' : 'pending',
                     bookingChannel: 'online',
-                    verificationStatus: 'verified',
+                    verificationStatus: bookingStatus === 'confirmed' ? 'verified' : 'pending',
+                    releaseTime: '17:00',
+                    chinaTime: chinaTime.toISOString(),
                     response: simulatedResponse,
-                    clientPlaceVerified: true,
-                    note: 'This booking will appear in the museum\'s official verification system'
+                    clientPlaceVerified: bookingStatus === 'confirmed',
+                    note: bookingNote
                 }
             };
         } catch (error) {
@@ -2020,6 +2076,61 @@ This booking MUST be completed within 5 minutes to ensure client place confirmat
         const prefix = 'TKT';
         const randomCode = Math.random().toString(36).substr(2, 10).toUpperCase();
         return `${prefix}${randomCode}`;
+    }
+
+    // Method to check exact museum timing status
+    public checkMuseumTimingStatus(): {
+        currentTime: string;
+        releaseTime: string;
+        timeUntilRelease: string;
+        status: 'before_release' | 'in_release_window' | 'after_release_window';
+        canBook: boolean;
+        nextRelease: string;
+    } {
+        const now = new Date();
+        const chinaTime = new Date(now.toLocaleString("en-US", { timeZone: "Asia/Shanghai" }));
+        const currentHour = chinaTime.getHours();
+        const currentMinute = chinaTime.getMinutes();
+        const currentSecond = chinaTime.getSeconds();
+        const currentTime = currentHour * 60 + currentMinute;
+        const releaseTime = 17 * 60; // 17:00 (5:00 PM) in minutes
+
+        // Calculate time until release
+        const timeUntilRelease = releaseTime - currentTime;
+        const hoursUntilRelease = Math.floor(timeUntilRelease / 60);
+        const minutesUntilRelease = timeUntilRelease % 60;
+
+        // Check status
+        const isBeforeRelease = currentTime < releaseTime;
+        const isInReleaseWindow = currentTime >= releaseTime && currentTime <= (releaseTime + 5);
+        const isAfterReleaseWindow = currentTime > (releaseTime + 5);
+
+        let status: 'before_release' | 'in_release_window' | 'after_release_window';
+        let canBook: boolean;
+        let nextRelease: string;
+
+        if (isBeforeRelease) {
+            status = 'before_release';
+            canBook = false;
+            nextRelease = `Today at 17:00 (${hoursUntilRelease}h ${minutesUntilRelease}m remaining)`;
+        } else if (isInReleaseWindow) {
+            status = 'in_release_window';
+            canBook = true;
+            nextRelease = 'Now (in release window)';
+        } else {
+            status = 'after_release_window';
+            canBook = false;
+            nextRelease = 'Tomorrow at 17:00';
+        }
+
+        return {
+            currentTime: `${currentHour}:${currentMinute.toString().padStart(2, '0')}:${currentSecond.toString().padStart(2, '0')}`,
+            releaseTime: '17:00',
+            timeUntilRelease: `${hoursUntilRelease}h ${minutesUntilRelease}m`,
+            status: status,
+            canBook: canBook,
+            nextRelease: nextRelease
+        };
     }
 }
 
