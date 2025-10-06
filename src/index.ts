@@ -10,6 +10,8 @@ import adminRoutes from './routes/admin';
 import visitPlanRoutes from './routes/visitPlans';
 import noShowRoutes from './routes/noShow';
 import entryRoutes from './routes/entry';
+import clientPlaceRoutes from './routes/clientPlace';
+import clientPlaceStorageRoutes from './routes/clientPlaceStorage';
 import { errorHandler } from './middleware/errorHandler';
 import { seedDatabase } from './seed';
 import { startAutoClearService } from './services/autoClearService';
@@ -68,6 +70,8 @@ app.use('/api/admin', adminRoutes);
 app.use('/api/visit-plans', visitPlanRoutes);
 app.use('/api/no-show', noShowRoutes);
 app.use('/api/entry', entryRoutes);
+app.use('/api/client-place', clientPlaceRoutes);
+app.use('/api/client-place-storage', clientPlaceStorageRoutes);
 
 // Health check endpoint
 app.get('/api/health', (req, res) => {
